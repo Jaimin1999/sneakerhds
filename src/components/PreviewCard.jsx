@@ -47,7 +47,7 @@ const PreviewCard = ({ shoe }) => {
         <section className="flex flex-col md:flex-row gap-11 py-10 px-5 bg-white dark:bg-[#1f1b24] dark:hover:bg-[#121015]  rounded-xl shadow-xl hover:shadow-2xl  w-3/4 md:max-w-2xl">
           <div className="text-gray-500 dark:text-white flex flex-col justify-between">
             <Link to={"/explore"}>
-              <h2>Back To DashBoard</h2>
+              <h2>BackLOL To DashBoard</h2>
             </Link>
             <img
               src={img}
