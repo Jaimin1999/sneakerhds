@@ -6,7 +6,9 @@ import {
   increaseQty,
   decreaseQty,
 } from "../redux/slices/CartSlice";
+import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import "./SweetAlert.css";
 
 const CartCard = ({ item }) => {
   const dispatch = useDispatch();
@@ -16,13 +18,34 @@ const CartCard = ({ item }) => {
     toast.error("Removed item from cart");
   };
 
+  const toggleRemoveModal = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to remove this item form your cart",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Yes",
+      customClass: {
+        confirmButton: "outlined-button",
+      },
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        remove(id);
+      }
+    });
+  };
+
   const increase = (id) => {
     dispatch(increaseQty(id));
   };
 
   const decrease = (id) => {
     if (item.qty === 1) {
-      dispatch(removeFromCart(id));
+      dispatch(toggleRemoveModal(id));
     } else dispatch(decreaseQty(id));
   };
 
@@ -66,7 +89,9 @@ const CartCard = ({ item }) => {
                       </button>
                     </p>
                     <div className="text-red-800  bg-red-200 group hover:bg-red-400 transition-transform duration-300 cursor-pointer rounded-full p-2 ml-2">
-                      <AiFillDelete onClick={() => remove(item.id)} />
+                      <AiFillDelete
+                        onClick={() => toggleRemoveModal(item.id)}
+                      />
                     </div>
                   </div>
                 </div>
