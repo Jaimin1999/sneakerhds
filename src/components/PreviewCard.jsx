@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "@mui/material";
 import { addToCart } from "../redux/slices/CartSlice";
 import { setFav } from "../redux/slices/FavItemSlice";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const PreviewCard = ({ shoe }) => {
   const cart = useSelector((state) => state.cart);
@@ -46,9 +48,17 @@ const PreviewCard = ({ shoe }) => {
       <main className="grid place-items-center min-h-[1300px] md:min-h-screen bg-gray-50 dark:bg-[#121212]">
         <section className="flex flex-col md:flex-row gap-11 py-10 px-5 bg-white dark:bg-[#1f1b24] dark:hover:bg-[#121015]  rounded-xl shadow-xl hover:shadow-2xl  w-3/4 md:max-w-2xl">
           <div className="text-gray-500 dark:text-white flex flex-col justify-between">
-            <Link to={"/explore"}>
-              <h2>BackLOL To DashBoard</h2>
-            </Link>
+            <div>
+              <Button
+                to="/explore"
+                component={Link}
+                variant="text"
+                sx={{ textTransform: "none", color: "#a0a0a0" }}
+                startIcon={<KeyboardBackspaceIcon />}
+              >
+                {`back to explore`}
+              </Button>
+            </div>
             <img
               src={img}
               alt="shoe"

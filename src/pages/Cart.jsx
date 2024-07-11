@@ -3,6 +3,7 @@ import CartCard from "../components/CartCard";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { checkoutCart } from "../redux/slices/CartSlice";
+import { Button } from "@mui/material";
 
 import toast from "react-hot-toast";
 
@@ -44,9 +45,21 @@ const Cart = () => {
                     </h1>
                   </div>
                   <div className="flex justify-center">
-                    <button className="bg-[#2a2a2a] w-[200px] text-white p-4 rounded-md cursor-pointer hover:bg-black">
-                      <Link to="/explore">Shop Now</Link>
-                    </button>
+                    <Button
+                      to="/explore"
+                      component={Link}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "black",
+                        color: "white",
+                        "&:hover": {
+                          backgroundColor: "darkgray",
+                          color: "black",
+                        },
+                      }}
+                    >
+                      {`SHOP NOW`}
+                    </Button>
                   </div>
                 </div>
               </div>
